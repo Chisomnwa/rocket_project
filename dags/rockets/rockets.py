@@ -5,44 +5,13 @@ from airflow.utils.dates import datetime
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
-from includes.get_pictures import _get_pictures
+from rockets.includes.get_pictures import _get_pictures
+from rockets.includes.email_sender import task_fail_alert
 from airflow.models import Variable
-
-import smtpd
-import ssl
-from email.message import EmailMessage 
-
-email_sender = "nnamanichisomnc@gmail.com"
-email_password = ""
-email_receiver =
-
-def task_fail_alert(context):
-    state = context.get("task_instance").state
-    dag = context.get("task_instance").dag_id
-    task = context.get("task_instance").task_id
-    exec_date = context.get("task_instance").start_date
-    log = context.get("task_instance").log_url
-    env_name = context["params"].get("environment")
-    dag_owner = context["param"].get("dag_owner")
-
-    subject = f"task {task} in dag {dag} failed"
-    body = f'''
-    Hey {dag_owner}
-
-    The task {task} in dag {dag} running in {env_name} has failed for run date {exec_date}.
-
-    Here is the log url: {log}
-    '''
-
-    em = EmailMessage()
-    em['From'] = email_sender
-    em['To'] = email_reciever
-    em['Subject'] = subject
-    em.set_content(body)
 
 # Create default arguments
 default_args = {
-    "on_failure_callbac": task_fail_alert,
+    "on_failure_callback": task_fail_alert,
     "params": {
         "environment": Variable.get("environment"),
         "dag_owner": "Chisom"
