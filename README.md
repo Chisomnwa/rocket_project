@@ -62,4 +62,15 @@ $ curl -L "https://ll.thespacedevs.com/2.0.0/launch/"
 ## Mental Model
 As you can see, the data is in JSON format and provides rocket launch information, and for every launch, there's information about the specific rocket, such as **ID**, **name**, and the **image URL**. This is exactly what John needs and he initially draws this plan to collect the images of upcoming rocket launches (e.g., to point his screensaver to the directory holding these images).
 
+<p align="center" style="margin-bottom: 0px !important;">
+<img src="images/rocket_mental_model.png" width="540" height="540">
+
+## Flow chart
+This flow chart shows the process that will be taken for the successful completion of the project. It serves as a guideline, which is an important step to take before we start representing and manifesting the entire process in codes.
+<p align="center" style="margin-bottom: 0px !important;">
+<img src="images/rocket_flow_chart.png" width="540" height="540">
+
+
+
+
 
